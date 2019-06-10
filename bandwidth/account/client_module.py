@@ -1123,7 +1123,7 @@ class Client:
         if file_path is not None and content is None:
             content = open(file_path, 'rb')
             is_file_path = True
-        path = '/users/%s/media/%s' % (self.user_id, quote(media_name))
+        path = '/users/%s/media/%s' % (self.user_id, media_name)
         try:
             return self._make_request('put', path, data=content, headers={'content-type': content_type})
         finally:
@@ -1149,7 +1149,7 @@ class Client:
                     with io.open(media['media_name'], 'wb') as file:
                         file.write(stream.read())
         """
-        path = '/users/%s/media/%s' % (self.user_id, quote(media_name))
+        path = '/users/%s/media/%s' % (self.user_id, media_name)
         response = self._request('get', path, stream=True)
         response.raise_for_status()
         return response.raw, response.headers['content-type']
@@ -1165,7 +1165,7 @@ class Client:
 
             api.delete_media_file('file1.txt')
         """
-        path = '/users/%s/media/%s' % (self.user_id, quote(media_name))
+        path = '/users/%s/media/%s' % (self.user_id, media_name)
         self._make_request('delete', path)
 
     def get_number_info(self, number):
